@@ -464,11 +464,6 @@
         "description": "Define comma separated list of address/host names of the MySQL servers"
       },
       {
-        "name": "PMA_PASSWORD",
-        "label": "MySQL root password",
-        "description": "Define password to use for config authentication method"
-      },
-      {
         "name": "APP_URI",
         "label": "URI of the application",
         "description": "URI used for the reverse proxy and volumes location"
