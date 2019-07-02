@@ -14,6 +14,7 @@ services:
       - "traefik.docker.network=web"
     environment:
       PMA_ABSOLUTE_URI: "https://${APP_URI}"
+      PMA_ARBITRARY: 1
     networks:
       - web
 
