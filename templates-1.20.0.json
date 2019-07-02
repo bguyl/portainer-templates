@@ -421,6 +421,31 @@
     ]
   },
   {
+    "type": 3,
+    "title": "Gitea",
+    "description": "A painless self-hosted Git service",
+    "note": "",
+    "categories": ["development", "project-management"],
+    "platform": "linux",
+    "logo": "https://gitea.io/images/gitea.png",
+    "repository": {
+      "url": "https://github.com/bguyl/portainer-templates",
+      "stackfile": "stacks/gitea/docker-compose.yml"
+    },
+    "env": [
+      {
+        "name": "MYSQL_DATABASE_PASSWORD",
+        "label": "Database root password",
+        "description": "Password used by the MySQL root user."
+      },
+      {
+        "name": "APP_URI",
+        "label": "URI of the application",
+        "description": "URI used for the reverse proxy and volumes location"
+      }
+    ]
+  },
+  {
     "type": 1,
     "title": "Plesk",
     "description": "WebOps platform and hosting control panel",
