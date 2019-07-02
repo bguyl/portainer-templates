@@ -15,7 +15,7 @@ services:
       - ghost
 
    ghost:
-      image: ghost:1-alpine
+      image: ghost:2.25.4-alpine
       volumes:
       - /opt/${APP_URI}/ghost/:/var/lib/ghost/
       restart: always
