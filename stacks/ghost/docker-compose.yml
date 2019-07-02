@@ -26,6 +26,7 @@ services:
         - "traefik.port=2368"
         - "traefik.docker.network=web"
       environment:
+        url: "https://${url}"
         database__client: mysql
         database__connection__host: db
         database__connection__user: root
