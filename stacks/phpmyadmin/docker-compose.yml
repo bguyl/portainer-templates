@@ -2,7 +2,7 @@ version: '2'
 
 services:
    phpmyadmin:
-    image: phpmyadmin/phpmyadmin:lastest
+    image: phpmyadmin/phpmyadmin:latest
     volumes:
       - /opt/${APP_URI}/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
     restart: always
