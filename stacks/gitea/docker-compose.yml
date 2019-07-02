@@ -23,7 +23,7 @@ services:
         - "traefik.enable=true"
         - "traefik.backend=gitea"
         - "traefik.frontend.rule=Host:${APP_URI}"
-        - "traefik.port=2368"
+        - "traefik.port=3000"
         - "traefik.docker.network=web"
       environment:
         database__client: mysql
