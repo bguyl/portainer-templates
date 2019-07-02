@@ -2,15 +2,17 @@ version: '2'
 
 services:
    db:
-     image: mysql:5.7
-     volumes:
-       - /opt/${APP_URI}/mysql:/var/lib/mysql
-     restart: always
-     environment:
-       MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
-       MYSQL_DATABASE: wordpress
-       MYSQL_USER: wordpress
-       MYSQL_PASSWORD: wordpress
+    image: mysql:5.7
+    volumes:
+      - /opt/${APP_URI}/mysql:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    networks:
+      - wordpress
 
    wordpress:
       image: wordpress:latest
@@ -29,6 +31,7 @@ services:
         WORDPRESS_DB_PASSWORD: wordpress
       networks:
         - web
+        - wordpress
 
 networks:
   web:
