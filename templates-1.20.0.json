@@ -396,6 +396,31 @@
     "volumes": [{"container": "/var/lib/ghost/content"}]
   },
   {
+    "type": 3,
+    "title": "Ghost",
+    "description": "Free and open-source blogging platform",
+    "note": "Access the blog management interface under <code>/ghost/</code>.",
+    "categories": ["blog"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ghost.png",
+    "repository": {
+      "url": "https://github.com/bguyl/portainer-templates",
+      "stackfile": "stacks/ghost/docker-compose.yml"
+    },
+    "env": [
+      {
+        "name": "MYSQL_DATABASE_PASSWORD",
+        "label": "Database root password",
+        "description": "Password used by the MySQL root user."
+      },
+      {
+        "name": "APP_URI",
+        "label": "URI of the application",
+        "description": "URI used for the reverse proxy and volumes location"
+      }
+    ]
+  },
+  {
     "type": 1,
     "title": "Plesk",
     "description": "WebOps platform and hosting control panel",
@@ -788,11 +813,6 @@
         "name": "MYSQL_DATABASE_PASSWORD",
         "label": "Database root password",
         "description": "Password used by the MySQL root user."
-      },
-      {
-        "name": "APP_URI",
-        "label": "URI of the application",
-        "description": "URI used for the reverse proxy and volumes location"
       }
     ]
   },

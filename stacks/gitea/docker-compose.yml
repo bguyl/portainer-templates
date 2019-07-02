@@ -1,0 +1,43 @@
+version: '2'
+
+services:
+   db:
+    image: mysql:5.7
+    volumes:
+      - /opt/${APP_URI}/mysql:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
+      MYSQL_DATABASE: gitea
+      MYSQL_USER: gitea
+      MYSQL_PASSWORD: gitea
+    networks:
+      - gitea
+
+   gitea:
+      image: gitea/gitea:latest
+      volumes:
+      - /opt/${APP_URI}/gitea/:/data/
+      restart: always
+      labels:
+        - "traefik.enable=true"
+        - "traefik.backend=gitea"
+        - "traefik.frontend.rule=Host:${APP_URI}"
+        - "traefik.port=2368"
+        - "traefik.docker.network=web"
+      environment:
+        database__client: mysql
+        database__connection__host: db
+        database__connection__user: root
+        database__connection__password: ${MYSQL_DATABASE_PASSWORD}
+        database__connection__database: gitea
+      networks:
+        - web
+        - wordpress
+      ports:
+        - "220:22"
+
+networks:
+  web:
+    external:
+      name: web
