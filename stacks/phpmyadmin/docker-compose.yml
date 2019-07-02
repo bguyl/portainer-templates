@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+   phpmyadmin:
+    image: phpmyadmin/phpmyadmin:lastest
+    volumes:
+      - /opt/${APP_URI}/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=phpmyadmin"
+      - "traefik.frontend.rule=Host:${APP_URI}"
+      - "traefik.port=80"
+      - "traefik.docker.network=web"
+    environment:
+      PMA_HOSTS: ${PMA_HOSTS}
+      PMA_USER: root
+      PMA_PASSWORD: ${PMA_PASSWORD}
+      PMA_ABSOLUTE_URI: "https://${APP_URI}"
+    networks:
+      - web
+      - default
+
+networks:
+  web:
+    external:
+      name: web

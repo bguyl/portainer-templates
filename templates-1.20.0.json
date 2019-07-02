@@ -446,6 +446,36 @@
     ]
   },
   {
+    "type": 3,
+    "title": "phpMyAdmin",
+    "description": "Bringing MySQL to the web",
+    "note": "",
+    "categories": [""],
+    "platform": "linux",
+    "logo": "https://www.phpmyadmin.net/static/images/logo.png?2ccd9afd557e",
+    "repository": {
+      "url": "https://github.com/bguyl/portainer-templates",
+      "stackfile": "stacks/phpmyadmin/docker-compose.yml"
+    },
+    "env": [
+      {
+        "name": "PMA_HOSTS",
+        "label": "MySQL hosts",
+        "description": "Define comma separated list of address/host names of the MySQL servers"
+      },
+      {
+        "name": "PMA_PASSWORD",
+        "label": "MySQL root password",
+        "description": "Define password to use for config authentication method"
+      },
+      {
+        "name": "APP_URI",
+        "label": "URI of the application",
+        "description": "URI used for the reverse proxy and volumes location"
+      }
+    ]
+  },
+  {
     "type": 1,
     "title": "Plesk",
     "description": "WebOps platform and hosting control panel",
