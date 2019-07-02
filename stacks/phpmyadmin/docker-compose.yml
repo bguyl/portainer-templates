@@ -13,11 +13,9 @@ services:
       - "traefik.port=80"
       - "traefik.docker.network=web"
     environment:
-      PMA_HOSTS: ${PMA_HOSTS}
       PMA_ABSOLUTE_URI: "https://${APP_URI}"
     networks:
       - web
-      - default
 
 networks:
   web:
