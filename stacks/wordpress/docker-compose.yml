@@ -4,7 +4,7 @@ services:
    db:
      image: mysql:5.7
      volumes:
-       - db:/var/lib/mysql
+       - /opt/${APP_URI}/mysql:/var/lib/mysql
      restart: always
      environment:
        MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
@@ -15,7 +15,7 @@ services:
    wordpress:
       image: wordpress:latest
       volumes:
-      - wp:/var/www/html/
+      - /opt/${APP_URI}/wordpress/:/var/www/html/
       restart: always
       labels:
         - "traefik.enable=true"
