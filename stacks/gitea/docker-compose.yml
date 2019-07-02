@@ -33,7 +33,7 @@ services:
         database__connection__database: gitea
       networks:
         - web
-        - wordpress
+        - gitea
       ports:
         - "220:22"
 
