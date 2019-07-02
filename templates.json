@@ -425,6 +425,11 @@
       {
         "name": "WORDPRESS_DB_PASSWORD",
         "label": "Database password"
+      },
+      {
+        "name": "APP_URI",
+        "label": "URI of the application",
+        "description": "URI used for the reverse proxy and volumes location"
       }
     ],
     "ports": [
@@ -780,6 +785,11 @@
         "name": "MYSQL_ROOT_PASSWORD",
         "label": "Database root password",
         "description": "Password used by the MySQL root user."
+      },
+      {
+        "name": "APP_URI",
+        "label": "URI of the application",
+        "description": "URI used for the reverse proxy and volumes location"
       }
     ]
   },
