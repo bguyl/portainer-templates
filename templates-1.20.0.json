@@ -450,7 +450,7 @@
     "title": "phpMyAdmin",
     "description": "Bringing MySQL to the web",
     "note": "",
-    "categories": [""],
+    "categories": ["database"],
     "platform": "linux",
     "logo": "https://www.phpmyadmin.net/static/images/logo.png?2ccd9afd557e",
     "repository": {
