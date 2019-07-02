@@ -788,11 +788,6 @@
         "name": "MYSQL_DATABASE_PASSWORD",
         "label": "Database root password",
         "description": "Password used by the MySQL root user."
-      },
-      {
-        "name": "APP_URI",
-        "label": "URI of the application",
-        "description": "URI used for the reverse proxy and volumes location"
       }
     ]
   },
@@ -813,6 +808,11 @@
         "name": "MYSQL_DATABASE_PASSWORD",
         "label": "Database root password",
         "description": "Password used by the MySQL root user."
+      },
+      {
+        "name": "APP_URI",
+        "label": "URI of the application",
+        "description": "URI used for the reverse proxy and volumes location"
       }
     ]
   },
