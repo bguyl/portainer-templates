@@ -1,6 +1,53 @@
 [
   {
     "type": 3,
+    "title": "Framadate",
+    "description": "Framadate is an online service for planning an appointment or making a decision quickly and easily.",
+    "note": "",
+    "categories": [
+      "project-management"
+    ],
+    "platform": "linux",
+    "logo": "https://framagit.org/uploads/-/system/project/avatar/16/date.png?width=64",
+    "repository": {
+      "url": "https://github.com/bguyl/portainer-templates",
+      "stackfile": "stacks/framadate/docker-compose.yml"
+    },
+    "env": [
+      {
+        "name": "APP_URI",
+        "label": "URI of the application",
+        "description": "URI used for the reverse proxy and volumes location"
+      },
+      {
+        "name": "MYSQL_DATABASE_PASSWORD",
+        "label": "Database root password",
+        "description": "Password used by the MySQL root user."
+      },
+      {
+        "name": "APP_NAME",
+        "label": "Name of the app",
+        "description": "Nom de l'application"
+      },
+      {
+        "name": "ADMIN_MAIL",
+        "label": "Admin mail",
+        "description": "Adresse mail de l'administrateur du serveur"
+      },
+      {
+        "name": "ADMIN_USER",
+        "label": "Admin user",
+        "description": "Utilisateur de l'interface d'administration"
+      },
+      {
+        "name": "ADMIN_PASSWORD",
+        "label": "Admin password",
+        "description": "Mot de passe de l'interface d'administration"
+      }
+    ]
+  },
+  {
+    "type": 3,
     "title": "BB-Bot",
     "description": "BB-Bot pour le serveur Discord",
     "note": "",

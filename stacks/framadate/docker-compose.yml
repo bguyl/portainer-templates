@@ -1,0 +1,46 @@
+version: '2'
+
+services:
+  db:
+    image: mysql:5.7
+    command: --sql-mode="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
+    volumes:
+      - /opt/${APP_URI}/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_DATABASE_PASSWORD}
+      - MYSQL_USER=framadate
+      - MYSQL_PASSWORD=framadate
+      - MYSQL_DATABASE=framadate
+    restart: always
+    networks:
+      - framadate
+
+  framadate:
+    image: 127.0.0.1:5000/framadate
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=framadate"
+      - "traefik.frontend.rule=Host:${APP_URI}"
+      - "traefik.port=80"
+      - "traefik.docker.network=web"
+    environment:
+      - DOMAIN=${APP_URI}
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=${MYSQL_DATABASE_PASSWORD}
+      - MYSQL_DB=framadate
+      - MYSQL_HOST=db
+      - APP_NAME=${APP_NAME}
+      - ADMIN_MAIL=${ADMIN_MAIL}
+      - ADMIN_USER=${ADMIN_USER}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - DISABLE_SMTP=true
+
+    networks:
+      - web
+      - framadate
+
+networks:
+  web:
+    external:
+      name: web
