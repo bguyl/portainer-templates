@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+  db:
+    image: redis:5
+    volumes:
+      - /opt/${APP_URI}/redis:/data
+    restart: always
+    networks:
+      - bb-bot
+
+  bb-bot:
+    image: 127.0.0.1:5000/bb-bot
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=bb-bot"
+      - "traefik.frontend.rule=Host:api.${APP_URI}"
+      - "traefik.port=3000"
+      - "traefik.docker.network=web"
+    networks:
+      - web
+      - bb-bot
+
+  bb-bot-web:
+    image: 127.0.0.1:5000/bb-bot-web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=bb-bot-web"
+      - "traefik.frontend.rule=Host:${APP_URI}"
+      - "traefik.port=80"
+      - "traefik.docker.network=web"
+    networks:
+      - web
+
+networks:
+  web:
+    external:
+      name: web
