@@ -1,5 +1,27 @@
 [
   {
+    "type": 3,
+    "title": "BB-Bot",
+    "description": "BB-Bot pour le serveur Discord",
+    "note": "",
+    "categories": [
+      "bot"
+    ],
+    "platform": "linux",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Star_Wars_and_the_Power_of_Costume_July_2018_20_%28BB-8_from_Episode_VII%29.jpg/800px-Star_Wars_and_the_Power_of_Costume_July_2018_20_%28BB-8_from_Episode_VII%29.jpg",
+    "repository": {
+      "url": "https://github.com/bguyl/portainer-templates",
+      "stackfile": "stacks/bb-bot/docker-compose.yml"
+    },
+    "env": [
+      {
+        "name": "APP_URI",
+        "label": "URI of the application",
+        "description": "URI used for the reverse proxy and volumes location"
+      }
+    ]
+  },
+  {
     "type": 1,
     "title": "Registry",
     "description": "Docker image registry",
