@@ -8,8 +8,6 @@ services:
       - PEERTUBE_DB_USERNAME=root
       - PEERTUBE_DB_PASSWORD=${POSTGRES_ROOT_PASSWORD}
       - PEERTUBE_WEBSERVER_HOSTNAME=${APP_URI}
-      - PEERTUBE_WEBSERVER_PORT=80
-      - PEERTUBE_WEBSERVER_HTTPS=false
       - PEERTUBE_TRUST_PROXY=["127.0.0.1", "loopback", "172.18.0.0/16"]
       - PEERTUBE_SMTP_HOSTNAME=postfix
       - PEERTUBE_SMTP_PORT=25
@@ -57,7 +55,7 @@ services:
   postfix:
     image: mwader/postfix-relay
     environment:
-      - POSTFIX_myhostname=${APP_URI}
+      - POSTFIX_myhostname=mail.${APP_URI}
     restart: "always"
     networks:
       - peertube
