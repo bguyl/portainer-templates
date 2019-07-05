@@ -75,6 +75,32 @@
   },
   {
     "type": 3,
+    "title": "Plex torrent",
+    "description": "Plex / Transmission / Sonarr",
+    "note": "",
+    "categories": [
+      "media"
+    ],
+    "platform": "linux",
+    "logo": "https://framagit.org/uploads/-/system/project/avatar/18854/icon2.png?width=64",
+    "repository": {
+      "url": "https://github.com/bguyl/portainer-templates",
+      "stackfile": "stacks/plex/docker-compose.yml"
+    },
+    "env": [
+      {
+        "name": "APP_URI",
+        "label": "URI of the application",
+        "description": "URI used for the reverse proxy and volumes location"
+      },
+      {
+        "name": "PLEX_CLAIM",
+        "label": "Plex claim"
+      }
+    ]
+  },
+  {
+    "type": 3,
     "title": "BB-Bot",
     "description": "BB-Bot pour le serveur Discord",
     "note": "",

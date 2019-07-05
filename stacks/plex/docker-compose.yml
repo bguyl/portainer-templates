@@ -1,0 +1,84 @@
+version: '2'
+services:
+  plex:
+    image: plexinc/pms-docker
+    ports:
+      # - 32400:32400/tcp
+      - 3005:3005/tcp
+      - 8324:8324/tcp
+      - 32469:32469/tcp
+      - 1900:1900/udp
+      - 32410:32410/udp
+      - 32412:32412/udp
+      - 32413:32413/udp
+      - 32414:32414/udp
+    environment:
+      - TZ=Europe/Paris
+      - PLEX_CLAIM=${PLEX_CLAIM}
+      - ADVERTISE_IP=https://${APP_URI}/
+    volumes:
+      - /opt/${APP_URI}/plex/config:/config
+      - /opt/${APP_URI}/plex/config:/transcode
+      - /opt/${APP_URI}/data/tv:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=plex"
+      - "traefik.frontend.rule=Host:plex.${APP_URI}"
+      - "traefik.port=32400"
+      - "traefik.docker.network=web"
+    restart: unless-stopped
+    networks:
+      - web
+
+  sonarr:
+    image: linuxserver/sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+      # - UMASK_SET=022 #optional
+    volumes:
+      - /opt/${APP_URI}/sonarr/config:/config
+      - /opt/${APP_URI}/data/tv:/tv
+      - /opt/${APP_URI}/data/downloads:/downloads
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=sonarr"
+      - "traefik.frontend.rule=Host:sonarr.${APP_URI}"
+      - "traefik.port=8989"
+      - "traefik.docker.network=web"
+    # ports:
+      # - 8989:8989
+    restart: unless-stopped
+    networks:
+      - web
+
+  transmission:
+    image: linuxserver/transmission
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+      # - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
+    volumes:
+      - /opt/${APP_URI}/transmission/config:/config
+      - /opt/${APP_URI}/data/downloads:/downloads
+      - /opt/${APP_URI}/data/watch:/watch
+    ports:
+      # - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=transmission"
+      - "traefik.frontend.rule=Host:transmission.${APP_URI}"
+      - "traefik.port=9091"
+      - "traefik.docker.network=web"
+    restart: unless-stopped
+    networks:
+      - web
+
+networks:
+  web:
+    external:
+      name: web
