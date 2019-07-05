@@ -20,6 +20,7 @@ services:
       - "traefik.backend=peertube"
       - "traefik.frontend.rule=Host:${APP_URI}"
       - "traefik.port=9000"
+      - "traefik.docker.network=web"
     volumes:
       - /opt/${APP_URI}/data:/data
       - /opt/${APP_URI}/config:/config
