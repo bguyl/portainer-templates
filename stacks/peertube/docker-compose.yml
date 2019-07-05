@@ -3,6 +3,7 @@ version: '2'
 services:
   peertube:
     image: chocobozzz/peertube:production-stretch
+    restart: "always"
     environment:
       - PEERTUBE_DB_USERNAME=root
       - PEERTUBE_DB_PASSWORD=${POSTGRES_ROOT_PASSWORD}
@@ -16,6 +17,7 @@ services:
       - PEERTUBE_ADMIN_EMAIL=admin@rhos.club
     labels:
       - "traefik.enable=true"
+      - "traefik.backend=peertube"
       - "traefik.frontend.rule=Host:${APP_URI}"
       - "traefik.port=9000"
       - "traefik.docker.network=web"
@@ -29,7 +31,6 @@ services:
     networks:
       - web
       - peertube
-    restart: "always"
 
   postgres:
     image: postgres:10-alpine
