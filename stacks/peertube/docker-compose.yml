@@ -1,7 +1,6 @@
 version: '2'
 
 services:
-
   peertube:
     image: chocobozzz/peertube:production-stretch
     environment:
@@ -17,7 +16,6 @@ services:
       - PEERTUBE_ADMIN_EMAIL=admin@rhos.club
     labels:
       - "traefik.enable=true"
-      - "traefik.backend=peertube"
       - "traefik.frontend.rule=Host:${APP_URI}"
       - "traefik.port=9000"
       - "traefik.docker.network=web"
