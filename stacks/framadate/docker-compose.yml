@@ -18,6 +18,8 @@ services:
   framadate:
     image: 127.0.0.1:5000/framadate
     restart: always
+    volumes:
+      - /opt/${APP_URI}/framadate:/var/www/framadate
     labels:
       - "traefik.enable=true"
       - "traefik.backend=framadate"
