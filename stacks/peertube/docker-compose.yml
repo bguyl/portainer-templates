@@ -51,6 +51,8 @@ services:
     volumes:
       - /opt/${APP_URI}/redis:/data
     restart: "always"
+    networks:
+      - peertube
 
   postfix:
     image: mwader/postfix-relay
