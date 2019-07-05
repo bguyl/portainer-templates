@@ -48,6 +48,33 @@
   },
   {
     "type": 3,
+    "title": "Peertube",
+    "description": "L’hébergement de vidéos décentralisé, en réseau, basé sur du logiciel libre",
+    "note": "",
+    "categories": [
+      "media"
+    ],
+    "platform": "linux",
+    "logo": "https://framagit.org/uploads/-/system/project/avatar/18854/icon2.png?width=64",
+    "repository": {
+      "url": "https://github.com/bguyl/portainer-templates",
+      "stackfile": "stacks/peertube/docker-compose.yml"
+    },
+    "env": [
+      {
+        "name": "APP_URI",
+        "label": "URI of the application",
+        "description": "URI used for the reverse proxy and volumes location"
+      },
+      {
+        "name": "POSTGRES_ROOT_PASSWORD",
+        "label": "Database root password",
+        "description": "Password used by the Postgres root user."
+      }
+    ]
+  },
+  {
+    "type": 3,
     "title": "BB-Bot",
     "description": "BB-Bot pour le serveur Discord",
     "note": "",
