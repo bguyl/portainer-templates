@@ -52,6 +52,72 @@ services:
     restart: unless-stopped
     networks:
       - web
+      
+  radarr:
+    image: linuxserver/radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+      # - UMASK_SET=022 #optional
+    volumes:
+      - /opt/${APP_URI}/radarr/config:/config
+      - /opt/${APP_URI}/data/movies:/movies
+      - /opt/${APP_URI}/data/downloads:/downloads
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=radnarr"
+      - "traefik.frontend.rule=Host:radarr.${APP_URI}"
+      - "traefik.port=7878"
+      - "traefik.docker.network=web"
+    restart: unless-stopped
+    networks:
+      - web
+   
+  bazarr:
+    image: linuxserver/bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+      # - UMASK_SET=022 #optional
+    volumes:
+      - /opt/${APP_URI}/bazarr/config:/config
+      - /opt/${APP_URI}/data/movies:/movies
+      - /opt/${APP_URI}/data/tv:/tv
+    # ports:
+    #  - 6767:6767
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=bazarr"
+      - "traefik.frontend.rule=Host:bazarr.${APP_URI}"
+      - "traefik.port=6767"
+      - "traefik.docker.network=web"
+    restart: unless-stopped
+    networks:
+      - web
+      
+  jackett:
+    image: linuxserver/jackett
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+      # - RUN_OPTS=run options here #optional
+    volumes:
+      - /opt/${APP_URI}/jackett/config:/config
+      - /opt/${APP_URI}/data/downloads:/downloads
+    # ports:
+    #  - 9117:9117
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=bazarr"
+      - "traefik.frontend.rule=Host:jackett.${APP_URI}"
+      - "traefik.port=9117"
+      - "traefik.docker.network=web"
+    restart: unless-stopped
+    networks:
+      - web
 
   transmission:
     image: linuxserver/transmission
