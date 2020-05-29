@@ -1,9 +1,10 @@
 version: '2'
 services:
    db:
-    image: mysql:5.7
+    image: mysql:5
     volumes:
       - /opt/${APP_URI}/mysql:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
