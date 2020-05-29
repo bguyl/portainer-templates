@@ -2,7 +2,7 @@ version: '2'
 
 services:
    db:
-    image: mysql:5.7
+    image: mysql
     volumes:
       - /opt/${APP_URI}/mysql:/var/lib/mysql
     restart: always
@@ -15,7 +15,7 @@ services:
       - ghost
 
    ghost:
-      image: ghost:2.25.4-alpine
+      image: ghost
       # volumes:
       # - /opt/${APP_URI}/ghost/:/var/lib/ghost/content/
       restart: always
