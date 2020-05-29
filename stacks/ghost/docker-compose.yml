@@ -1,8 +1,7 @@
 version: '2'
-
 services:
    db:
-    image: mysql:5
+    image: mysql:5.7
     volumes:
       - /opt/${APP_URI}/mysql:/var/lib/mysql
     restart: always
@@ -13,7 +12,6 @@ services:
       MYSQL_PASSWORD: ghost
     networks:
       - ghost
-
    ghost:
       image: ghost:alpine
       # volumes:
@@ -35,7 +33,6 @@ services:
       networks:
         - web
         - ghost
-
 networks:
   web:
     external:
