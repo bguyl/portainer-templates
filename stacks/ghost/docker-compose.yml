@@ -9,7 +9,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
       MYSQL_DATABASE: ghost
       MYSQL_USER: ghost
-      MYSQL_PASSWORD: ghost
+      MYSQL_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
     networks:
       - ghost
    ghost:
@@ -27,7 +27,7 @@ services:
         url: "https://${APP_URI}"
         database__client: mysql
         database__connection__host: db
-        database__connection__user: root
+        database__connection__user: ghost
         database__connection__password: ${MYSQL_DATABASE_PASSWORD}
         database__connection__database: ghost
       networks:
